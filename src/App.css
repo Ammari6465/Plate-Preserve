@@ -1,0 +1,54 @@
+:root {
+    --input-focus: #2d8cf0;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: lightblue; /* Updated to light blue */
+    --main-color: black;
+  }
+  
+  /* General Home Styles */
+  .home {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-color); /* Light blue background */
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-color);
+    text-align: center;
+    z-index: 2;
+  }
+  
+  /* Slideshow Container */
+  .slideshow {
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  /* Other styling... */
+  
+  /* Modal Styles */
+  .modal-content {
+    background: var(--bg-color); /* Light blue background */
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 4px 4px var(--main-color);
+  }
+  

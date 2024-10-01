@@ -1,0 +1,35 @@
+[debug] [2024-09-20T04:55:50.936Z] ----------------------------------------------------------------------
+[debug] [2024-09-20T04:55:50.938Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Ammar\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-09-20T04:55:50.938Z] CLI Version:   13.17.0
+[debug] [2024-09-20T04:55:50.939Z] Platform:      win32
+[debug] [2024-09-20T04:55:50.939Z] Node Version:  v20.17.0
+[debug] [2024-09-20T04:55:50.939Z] Time:          Fri Sep 20 2024 10:25:50 GMT+0530 (India Standard Time)
+[debug] [2024-09-20T04:55:50.939Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-20T04:55:50.941Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-09-20T04:55:51.013Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-09-20T04:55:51.013Z] > authorizing via signed-in user (ammarkalyanwala52@gmail.com)
+[debug] [2024-09-20T04:55:51.013Z] [iam] checking project platepreserve for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get"]
+[debug] [2024-09-20T04:55:51.014Z] > refreshing access token with scopes: []
+[debug] [2024-09-20T04:55:51.015Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-09-20T04:55:51.015Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-09-20T04:56:03.053Z] *** [apiv2] error from fetch(https://www.googleapis.com/oauth2/v3/token, {"headers":{},"method":"POST","body":{"_overheadLength":545,"_valueLength":212,"_valuesToMeasure":[],"writable":false,"readable":true,"dataSize":0,"maxDataSize":2097152,"pauseStreams":true,"_released":true,"_streams":[],"_currentStream":null,"_insideLoop":false,"_pendingNext":false,"_boundary":"--------------------------048250824580037742592019","_events":{},"_eventsCount":1}}): FetchError: request to https://www.googleapis.com/oauth2/v3/token failed, reason: getaddrinfo ENOTFOUND www.googleapis.com
+[debug] [2024-09-20T04:56:03.054Z] [iam] error while checking permissions, command may fail: FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[info] 
+[info] === Deploying to 'platepreserve'...
+[info] 
+[info] i  deploying firestore 
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2024-09-20T04:56:03.060Z] > refreshing access token with scopes: []
+[debug] [2024-09-20T04:56:03.060Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-09-20T04:56:03.060Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-09-20T04:56:15.125Z] *** [apiv2] error from fetch(https://www.googleapis.com/oauth2/v3/token, {"headers":{},"method":"POST","body":{"_overheadLength":545,"_valueLength":212,"_valuesToMeasure":[],"writable":false,"readable":true,"dataSize":0,"maxDataSize":2097152,"pauseStreams":true,"_released":true,"_streams":[],"_currentStream":null,"_insideLoop":false,"_pendingNext":false,"_boundary":"--------------------------567200031743687489300475","_events":{},"_eventsCount":1}}): FetchError: request to https://www.googleapis.com/oauth2/v3/token failed, reason: getaddrinfo ENOTFOUND www.googleapis.com
+[debug] [2024-09-20T04:56:20.147Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\Ammar\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:268:49)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7)
+[error] 
+[error] Error: An unexpected error has occurred.
