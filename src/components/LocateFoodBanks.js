@@ -5,9 +5,9 @@ const LocateFoodBanks = () => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
-  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    // Initialize the map after the component has mounted
     const initializeMap = () => {
       if (window.google && window.google.maps) {
         const initialPosition = { lat: 40.1215, lng: -100.4504 }; // Fallback location
@@ -15,6 +15,22 @@ const LocateFoodBanks = () => {
           center: initialPosition,
           zoom: 4,
           mapId: 'DEMO_MAP_ID', // Replace with your actual map ID if necessary
+          styles: [
+            {
+              featureType: 'all',
+              stylers: [{ saturation: -80 }]
+            },
+            {
+              featureType: 'road.arterial',
+              elementType: 'geometry',
+              stylers: [{ hue: '#00ffee' }, { saturation: 50 }]
+            },
+            {
+              featureType: 'poi.business',
+              elementType: 'labels',
+              stylers: [{ visibility: 'off' }]
+            }
+          ]
         });
 
         const userMarker = new window.google.maps.Marker({
@@ -26,10 +42,12 @@ const LocateFoodBanks = () => {
         setMap(mapInstance);
         setMarker(userMarker);
         getCurrentLocation(mapInstance, userMarker);
+        setLoading(false);
+      } else {
+        console.error('Google Maps API failed to load.');
       }
     };
 
-    // Get user's current location
     const getCurrentLocation = (mapInstance, userMarker) => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -50,7 +68,6 @@ const LocateFoodBanks = () => {
       }
     };
 
-    // Load Google Maps script dynamically
     const loadGoogleMapsScript = () => {
       const existingScript = document.getElementById('googleMapsScript');
       if (!existingScript) {
@@ -59,16 +76,15 @@ const LocateFoodBanks = () => {
         script.id = 'googleMapsScript';
         script.async = true;
         document.body.appendChild(script);
-        window.initMap = initializeMap; // Set the global initMap function
+        window.initMap = initializeMap;
       } else {
-        initializeMap(); // Script is already loaded, initialize the map
+        initializeMap();
       }
     };
 
     loadGoogleMapsScript();
   }, []);
 
-  // Handle location search
   const searchLocation = (place) => {
     if (map && window.google) {
       const service = new window.google.maps.places.PlacesService(map);
@@ -96,7 +112,6 @@ const LocateFoodBanks = () => {
     <div style={{ height: '100vh', width: '100%', position: 'relative' }}>
       <style>
         {`
-          /* Search input styling */
           .search-input {
             margin: 10px;
             padding: 12px 15px;
@@ -114,13 +129,11 @@ const LocateFoodBanks = () => {
             z-index: 1000;
           }
 
-          /* Focus effect for search input */
           .search-input:focus {
             width: 350px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
           }
 
-          /* Map container styling */
           #map {
             height: calc(100% - 50px);
             width: 100%;
@@ -129,13 +142,11 @@ const LocateFoodBanks = () => {
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
           }
 
-          /* Style the input placeholder */
           .search-input::placeholder {
             color: #888;
             font-style: italic;
           }
 
-          /* Transition effect for the map container on hover */
           #map:hover {
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
           }
@@ -148,10 +159,11 @@ const LocateFoodBanks = () => {
         onKeyPress={(e) => {
           if (e.key === 'Enter') {
             searchLocation(e.target.value);
-            e.target.value = ''; // Clear input after search
+            e.target.value = '';
           }
         }}
       />
+      {loading && <div>Loading Map...</div>}
       <div ref={mapRef} id="map"></div>
     </div>
   );
